@@ -1,0 +1,6 @@
+black
+django
+pillow
+pip-tools
+pre-commit
+reorder-python-imports
