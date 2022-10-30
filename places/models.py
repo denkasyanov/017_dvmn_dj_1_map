@@ -19,3 +19,9 @@ class Place(models.Model):
     @property
     def coordinates(self):
         return Coordinates(self.latitude, self.longitude)
+
+
+class Image(models.Model):
+    image = models.ImageField(upload_to="images/")
+    position = models.PositiveSmallIntegerField()
+    place = models.ForeignKey("Place", on_delete=models.CASCADE)
