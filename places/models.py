@@ -25,3 +25,6 @@ class Image(models.Model):
     image = models.ImageField(upload_to="images/")
     position = models.PositiveSmallIntegerField()
     place = models.ForeignKey("Place", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.place.title} #{self.position}"
