@@ -46,9 +46,7 @@
     }
 
   </style>
-  <script id="places-geojson" type="application/json">
-    {{ map_features| safe }}
-  </script>
+  {{ map_features | json_script:"places-geojson" }}
 
 
   <script id="app-template" type="text/template">

@@ -29,6 +29,4 @@ def main_page(request):
         ],
     }
 
-    return render(
-        request, "index.html", context={"map_features": json.dumps(map_features)}
-    )
+    return render(request, "index.html", context={"map_features": map_features})
