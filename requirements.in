@@ -1,5 +1,7 @@
 black
 django
+django-environ
+ipython
 pillow
 pip-tools
 pre-commit
