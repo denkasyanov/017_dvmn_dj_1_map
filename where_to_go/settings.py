@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import environ
+
+env = environ.Env(
+    DEBUG=(bool, False),
+)
+
+environ.Env.read_env(".env")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.gis",
     "places.apps.PlacesConfig",
 ]
 
@@ -74,12 +83,14 @@ WSGI_APPLICATION = "where_to_go.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+DATABASES = {"default": env.db()}
 
 
 # Password validation
@@ -130,3 +141,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+SPATIALITE_LIBRARY_PATH = env("SPATIALITE_LIBRARY_PATH")
+GDAL_LIBRARY_PATH = env("GDAL_LIBRARY_PATH")
+GEOS_LIBRARY_PATH = env("GEOS_LIBRARY_PATH")
