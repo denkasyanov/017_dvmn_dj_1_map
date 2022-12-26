@@ -1,8 +1,5 @@
-from collections import namedtuple
-
+from django.contrib.gis.db.models import PointField
 from django.db import models
-
-Coordinates = namedtuple("Coordinates", "latitude longitude")
 
 
 class Place(models.Model):
@@ -10,15 +7,10 @@ class Place(models.Model):
     description_short = models.CharField(max_length=1000)
     description_long = models.TextField()
 
-    latitude = models.DecimalField(max_digits=9, decimal_places=6)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+    location = PointField(blank=True)
 
     def __str__(self):
         return self.title
-
-    @property
-    def coordinates(self):
-        return Coordinates(self.latitude, self.longitude)
 
 
 class Image(models.Model):
