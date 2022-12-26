@@ -141,8 +141,3 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-SPATIALITE_LIBRARY_PATH = env("SPATIALITE_LIBRARY_PATH")
-GDAL_LIBRARY_PATH = env("GDAL_LIBRARY_PATH")
-GEOS_LIBRARY_PATH = env("GEOS_LIBRARY_PATH")
