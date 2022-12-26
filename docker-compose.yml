@@ -1,0 +1,28 @@
+---
+version: '3.7'
+
+services:
+
+    app:
+        platform: linux/amd64
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/app
+        ports:
+            - 8001:8000
+        entrypoint: ./entrypoint.sh
+        depends_on:
+            - djmap_db
+
+    djmap_db:
+        image: postgis/postgis:15-3.3
+        volumes:
+            - djmap_db_pg_data:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=user
+            - POSTGRES_PASSWORD=wow_very_secure_password
+            - POSTGRES_DB=db
+
+volumes:
+    djmap_db_pg_data:
