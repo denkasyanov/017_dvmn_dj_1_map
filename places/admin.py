@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.gis.geos import Point
+from django.utils.safestring import mark_safe
 
 from places.models import Image
 from places.models import Place
@@ -38,6 +39,13 @@ class PlaceForm(forms.ModelForm):
 
 class ImageInline(admin.TabularInline):
     model = Image
+    fields = ("image", "preview", "position")
+    readonly_fields = ("preview",)
+
+    def preview(self, image):
+        url = image.image.url
+        height = min(image.image.height, 200)
+        return mark_safe(f"<img src='{image.image.url}' height='{height}' />")
 
 
 @admin.register(Place)
