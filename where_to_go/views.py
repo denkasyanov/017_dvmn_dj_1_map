@@ -2,31 +2,21 @@ import json
 
 from django.shortcuts import render
 from django.templatetags.static import static
+from djangorestframework_camel_case.util import camelize
+
+from places.models import Place
+from places.serializers import PlaceFeatureSerializer
 
 
 def main_page(request):
-    map_features = {
-        "type": "FeatureCollection",
-        "features": [
-            {
-                "type": "Feature",
-                "geometry": {"type": "Point", "coordinates": [37.62, 55.793676]},
-                "properties": {
-                    "title": "«Легенды Москвы",
-                    "placeId": "moscow_legends",
-                    "detailsUrl": static("places/moscow_legends.json"),
-                },
-            },
-            {
-                "type": "Feature",
-                "geometry": {"type": "Point", "coordinates": [37.64, 55.753676]},
-                "properties": {
-                    "title": "Крыши24.рф",
-                    "placeId": "roofs24",
-                    "detailsUrl": static("places/roofs24.json"),
-                },
-            },
-        ],
-    }
+    places = Place.objects.all()
+
+    map_features = PlaceFeatureSerializer(places, many=True).data
+
+    # Please the front-end
+    map_features = camelize(map_features)
+
+    # Temporary hack to get rid of non-primitive structures
+    map_features = json.loads(json.dumps(map_features))
 
     return render(request, "index.html", context={"map_features": map_features})
