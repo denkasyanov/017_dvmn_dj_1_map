@@ -15,7 +15,7 @@ class PlaceFeatureSerializer(GeoFeatureModelSerializer):
     details_url = serializers.SerializerMethodField()
 
     def get_details_url(self, place: Place):
-        return static(f"places/{place.place_id}.json")
+        return place.get_absolute_url()
 
 
 class PlaceSerializer(serializers.ModelSerializer):
