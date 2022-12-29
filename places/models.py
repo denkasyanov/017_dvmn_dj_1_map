@@ -1,6 +1,7 @@
 from django.contrib.gis.db.models import PointField
 from django.db import models
 from django.templatetags.static import static
+from django.urls import reverse
 
 
 class Place(models.Model):
@@ -13,6 +14,9 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("places:detail", args=(self.id,))
 
 
 class Image(models.Model):
