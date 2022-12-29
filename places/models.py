@@ -14,10 +14,6 @@ class Place(models.Model):
     def __str__(self):
         return self.title
 
-    @property
-    def details_url(self):
-        return static(f"places/{self.place_id}.json")
-
 
 class Image(models.Model):
     image = models.ImageField(upload_to="images/")
