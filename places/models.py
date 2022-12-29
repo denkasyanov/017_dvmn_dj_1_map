@@ -1,5 +1,6 @@
 from django.contrib.gis.db.models import PointField
 from django.db import models
+from django.templatetags.static import static
 
 
 class Place(models.Model):
@@ -12,6 +13,10 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def details_url(self):
+        return static(f"places/{self.place_id}.json")
 
 
 class Image(models.Model):
