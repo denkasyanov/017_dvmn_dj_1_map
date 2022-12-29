@@ -36,9 +36,14 @@ class PlaceForm(forms.ModelForm):
         return data
 
 
+class ImageInline(admin.TabularInline):
+    model = Image
+
+
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     form = PlaceForm
+    inlines = [ImageInline]
 
 
 @admin.register(Image)
