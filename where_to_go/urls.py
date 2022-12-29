@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.urls import include
 from django.urls import path
 
 from .views import main_page
@@ -23,6 +24,7 @@ from .views import main_page
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", main_page),
+    path("places/", include("places.urls")),
 ]
 
 if settings.DEBUG:
