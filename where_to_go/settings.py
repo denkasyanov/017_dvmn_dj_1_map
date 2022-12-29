@@ -46,9 +46,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
-    "places.apps.PlacesConfig",
+    "adminsortable2",
     "rest_framework",
     "rest_framework_gis",
+    "places.apps.PlacesConfig",
 ]
 
 MIDDLEWARE = [

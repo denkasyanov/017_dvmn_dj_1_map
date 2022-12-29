@@ -65,7 +65,12 @@ django==4.1.4 \
     --hash=sha256:d38a4e108d2386cb9637da66a82dc8d0733caede4c83c4afdbda78af4214211b
     # via
     #   -r requirements.in
+    #   django-admin-sortable2
     #   djangorestframework
+django-admin-sortable2==2.1.4 \
+    --hash=sha256:7dc08ff0fbce5859502f809d108c0495f3b0d94609269eaedbb1237e03084acb \
+    --hash=sha256:93d7951fadfeb1a31bed382e78adbf015f30018429a3287bd4343e343fa10aa8
+    # via -r requirements.in
 django-environ==0.9.0 \
     --hash=sha256:bff5381533056328c9ac02f71790bd5bf1cea81b1beeb648f28b81c9e83e0a21 \
     --hash=sha256:f21a5ef8cc603da1870bbf9a09b7e5577ab5f6da451b843dbcc721a7bca6b3d9

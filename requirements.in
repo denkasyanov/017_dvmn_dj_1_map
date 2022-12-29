@@ -1,5 +1,6 @@
 black
 django
+django-admin-sortable2
 django-environ
 djangorestframework
 djangorestframework-camel-case
