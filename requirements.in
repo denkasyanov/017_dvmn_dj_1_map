@@ -1,6 +1,9 @@
 black
 django
 django-environ
+djangorestframework
+djangorestframework-camel-case
+djangorestframework-gis
 ipython
 pillow
 pip-tools
