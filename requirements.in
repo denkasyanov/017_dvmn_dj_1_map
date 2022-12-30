@@ -2,6 +2,7 @@ black
 django
 django-admin-sortable2
 django-environ
+django-tinymce
 djangorestframework
 djangorestframework-camel-case
 djangorestframework-gis
