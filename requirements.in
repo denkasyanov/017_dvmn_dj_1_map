@@ -6,6 +6,7 @@ django-tinymce
 djangorestframework
 djangorestframework-camel-case
 djangorestframework-gis
+gunicorn
 ipython
 pillow
 pip-tools
