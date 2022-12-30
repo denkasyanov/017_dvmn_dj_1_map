@@ -12,6 +12,9 @@ class Place(models.Model):
 
     location = PointField(blank=True)
 
+    class Meta:
+        ordering = ["id"]
+
     def __str__(self):
         return self.title
 
@@ -21,8 +24,13 @@ class Place(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(upload_to="images/")
-    position = models.PositiveSmallIntegerField()
+    position = models.PositiveSmallIntegerField(
+        default=0, blank=False, null=False, db_index=True
+    )
     place = models.ForeignKey("Place", on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ["position"]
 
     def __str__(self):
         return f"{self.place.title} #{self.position}"
