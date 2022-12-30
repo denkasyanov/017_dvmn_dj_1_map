@@ -13,3 +13,4 @@ pip-tools
 pre-commit
 psycopg2-binary
 reorder-python-imports
+requests
