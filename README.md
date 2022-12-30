@@ -1,7 +1,7 @@
 # Куда пойти - Москва глазами Артёма
 ### Самые интересные места в Москве
 
-[Cайт](https://morelinks.to) | [Административный раздел](https://morelinks.to/admin/)
+[Cайт](http://morelinks.to) | [Административный раздел](http://morelinks.to/admin/)
 
 ## Usage
 
