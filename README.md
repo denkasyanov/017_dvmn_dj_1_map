@@ -31,6 +31,17 @@ docker compose up -d --build
 - В результате работы команды обновляется файл зависимостей `requirements.txt`
 - При перезапуске проекта через `docker compose up -d --build` новые зависимости устанавливаются автоматически внутри образа
 
+## Загрузка локаций через команду
+
+Для автоматизации добавления новых мест можно использовать команду
+
+``` Bash
+python manage.py load_place <url-to-json>
+```
+
+[Пример файла](https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/%D0%AF%D0%BF%D0%BE%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D1%81%D0%B0%D0%B4.json), который может быть таким образом загружен.
+
+---
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
 
