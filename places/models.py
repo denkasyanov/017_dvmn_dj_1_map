@@ -2,13 +2,14 @@ from django.contrib.gis.db.models import PointField
 from django.db import models
 from django.templatetags.static import static
 from django.urls import reverse
+from tinymce.models import HTMLField
 
 
 class Place(models.Model):
     title = models.CharField(max_length=250)
     place_id = models.CharField(max_length=250)
     description_short = models.CharField(max_length=1000)
-    description_long = models.TextField()
+    description_long = HTMLField()
 
     location = PointField(blank=True)
 
