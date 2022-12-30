@@ -21,6 +21,9 @@ class PlaceForm(forms.ModelForm):
     class Meta:
         model = Place
         exclude = []
+        widgets = {
+            "description_short": forms.Textarea(attrs={"rows": 4, "cols": 80}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
