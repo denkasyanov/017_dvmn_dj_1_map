@@ -8,6 +8,21 @@ from places.models import Image
 from places.models import Place
 
 
+def load_image(place, img_url, position):
+    response = requests.get(img_url)
+
+    if not response.ok:
+        raise CommandError(f"Couldn't download {img_url}")
+
+    img_name = img_url.split("/")[-1]
+
+    Image.objects.create(
+        image=ContentFile(response.content, name=img_name),
+        position=position,
+        place=place,
+    )
+
+
 class Command(BaseCommand):
     help = "Loads Place with its images to the website"
 
@@ -15,9 +30,7 @@ class Command(BaseCommand):
         parser.add_argument("place_url", type=str)
 
     def handle(self, *args, **options):
-
         place_url = options.get("place_url")
-
         response = requests.get(place_url)
 
         if not response.ok:
@@ -39,20 +52,8 @@ class Command(BaseCommand):
             },
         )
 
-        # Assuming:
+        # Assumptions:
         #  1) We are creating images for a new place (no prior images)
         #  2) Images are in correct order
         for image_position, img_url in enumerate(imported_place["imgs"]):
-
-            response = requests.get(img_url)
-
-            if not response.ok:
-                raise CommandError(f"Couldn't download {img_url}")
-
-            img_name = img_url.split("/")[-1]
-
-            Image.objects.create(
-                image=ContentFile(response.content, name=img_name),
-                position=image_position + 1,
-                place=place,
-            )
+            load_image(place, img_url, image_position + 1)
