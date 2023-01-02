@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
-from places.models import Image
 from places.models import Place
 
 
@@ -32,10 +31,7 @@ class PlaceSerializer(serializers.ModelSerializer):
     coordinates = serializers.SerializerMethodField()
 
     def get_imgs(self, place):
-        return [
-            image.image.url
-            for image in Image.objects.filter(place=place).order_by("position")
-        ]
+        return [image.image.url for image in place.images.order_by("position")]
 
     def get_coordinates(self, place: Place):
         return {
