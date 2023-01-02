@@ -9,6 +9,7 @@ class Place(models.Model):
     description_short = models.TextField()
     description_long = HTMLField()
 
+    # This field should not be blank on save. Validated in places.admin.PlaceForm.clean
     location = PointField(blank=True)
 
     class Meta:
