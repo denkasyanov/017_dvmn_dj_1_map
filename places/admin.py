@@ -50,7 +50,7 @@ class ImageInline(SortableTabularInline):
     def preview(self, image):
         url = image.image.url
         height = min(image.image.height, 200)
-        return mark_safe(f"<img src='{image.image.url}' height='{height}' />")
+        return mark_safe(f"<img src='{url}' height='{height}' />")
 
 
 @admin.register(Place)

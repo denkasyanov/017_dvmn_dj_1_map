@@ -1,7 +1,6 @@
 import json
 
 from django.shortcuts import render
-from django.templatetags.static import static
 from djangorestframework_camel_case.util import camelize
 
 from places.models import Place

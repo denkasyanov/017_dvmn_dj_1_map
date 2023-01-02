@@ -52,7 +52,7 @@ class Command(BaseCommand):
 
             img_name = img_url.split("/")[-1]
 
-            image = Image.objects.create(
+            Image.objects.create(
                 image=ContentFile(response.content, name=img_name),
                 position=image_position,
                 place=place,
