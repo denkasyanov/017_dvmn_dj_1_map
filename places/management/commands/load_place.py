@@ -26,9 +26,8 @@ class Command(BaseCommand):
         imported_place = response.json()
 
         place, _ = Place.objects.get_or_create(
-            place_id=imported_place["title"],
+            title=imported_place["title"],
             defaults={
-                "title": imported_place["title"],
                 "description_short": imported_place["description_short"],
                 "description_long": imported_place["description_long"],
                 "location": Point(

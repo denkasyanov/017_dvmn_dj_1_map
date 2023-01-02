@@ -9,7 +9,7 @@ class PlaceFeatureSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Place
         geo_field = "location"
-        fields = ("title", "place_id", "details_url")
+        fields = ("title", "details_url")
 
     details_url = serializers.SerializerMethodField()
 
