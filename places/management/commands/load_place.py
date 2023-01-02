@@ -40,7 +40,7 @@ class Command(BaseCommand):
 
         coordinates = imported_place.get("coordinates", {"lng": "0.0", "lat": "0.0"})
 
-        place, _ = Place.objects.get_or_create(
+        place, is_created = Place.objects.get_or_create(
             title=imported_place["title"],
             defaults={
                 "description_short": imported_place.get("description_short", ""),
@@ -52,8 +52,14 @@ class Command(BaseCommand):
             },
         )
 
+        if not is_created:
+            self.stdout.write(self.style.SUCCESS("Локация загружена ранее"))
+            return
+
         # Assumptions:
         #  1) We are creating images for a new place (no prior images)
         #  2) Images are in correct order
         for image_position, img_url in enumerate(imported_place["imgs"]):
             load_image(place, img_url, image_position + 1)
+
+        self.stdout.write(self.style.SUCCESS("Локация успешно загружена"))
