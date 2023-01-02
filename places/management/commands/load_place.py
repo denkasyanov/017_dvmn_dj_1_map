@@ -42,9 +42,7 @@ class Command(BaseCommand):
         # Assuming:
         #  1) We are creating images for a new place (no prior images)
         #  2) Images are in correct order
-        image_position = 1
-
-        for img_url in imported_place["imgs"]:
+        for image_position, img_url in enumerate(imported_place["imgs"]):
 
             response = requests.get(img_url)
 
@@ -55,8 +53,6 @@ class Command(BaseCommand):
 
             Image.objects.create(
                 image=ContentFile(response.content, name=img_name),
-                position=image_position,
+                position=image_position + 1,
                 place=place,
             )
-
-            image_position += 1
