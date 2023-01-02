@@ -9,7 +9,7 @@ class Place(models.Model):
     description_short = models.TextField()
     description_long = HTMLField()
 
-    location = PointField(blank=True)
+    location = PointField()
 
     class Meta:
         ordering = ["id"]
