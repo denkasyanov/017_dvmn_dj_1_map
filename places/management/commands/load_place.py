@@ -4,8 +4,7 @@ from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
 
-from places.models import Image
-from places.models import Place
+from places.models import Image, Place
 
 
 def load_image(place, img_url, position):
