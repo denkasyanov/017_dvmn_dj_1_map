@@ -1,5 +1,4 @@
-from adminsortable2.admin import SortableAdminMixin
-from adminsortable2.admin import SortableTabularInline
+from adminsortable2.admin import SortableTabularInline, SortableAdminBase
 from django import forms
 from django.contrib import admin
 from django.contrib.gis.geos import Point
@@ -51,7 +50,7 @@ class ImageInline(SortableTabularInline):
 
 
 @admin.register(Place)
-class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
+class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
     form = PlaceForm
     inlines = [ImageInline]
 
