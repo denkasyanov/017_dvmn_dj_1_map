@@ -28,14 +28,16 @@ class PlaceForm(forms.ModelForm):
             self.initial["longitude"], self.initial["latitude"] = location.tuple
 
     def clean(self):
-        data = super().clean()
+        cleaned_place = super().clean()
         if "latitude" in self.changed_data or "longitude" in self.changed_data:
-            lat, lng = data.pop("latitude", None), data.pop("longitude", None)
-            data["location"] = Point(lng, lat, srid=4326)
+            lat, lng = cleaned_place.pop("latitude", None), cleaned_place.pop(
+                "longitude", None
+            )
+            cleaned_place["location"] = Point(lng, lat, srid=4326)
 
-        if not (data.get("location") or data.get("latitude")):
+        if not (cleaned_place.get("location") or cleaned_place.get("latitude")):
             raise forms.ValidationError({"location": "Location is required"})
-        return data
+        return cleaned_place
 
 
 class ImageInline(SortableTabularInline):
