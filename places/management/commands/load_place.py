@@ -37,16 +37,14 @@ class Command(BaseCommand):
 
         imported_place = response.json()
 
-        coordinates = imported_place.get("coordinates", {"lng": "0.0", "lat": "0.0"})
-
         place, is_created = Place.objects.get_or_create(
             title=imported_place["title"],
             defaults={
                 "description_short": imported_place.get("description_short", ""),
                 "description_long": imported_place.get("description_long", ""),
                 "location": Point(
-                    x=float(coordinates["lng"]),
-                    y=float(coordinates["lat"]),
+                    x=float(imported_place["coordinates"]["lng"]),
+                    y=float(imported_place["coordinates"]["lat"]),
                 ),
             },
         )
