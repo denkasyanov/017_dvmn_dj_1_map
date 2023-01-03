@@ -56,7 +56,9 @@ class Command(BaseCommand):
         # Assumptions:
         #  1) We are creating images for a new place (no prior images)
         #  2) Images are in correct order
-        for image_position, img_url in enumerate(imported_place.get("imgs", [])):
-            load_image(place, img_url, image_position + 1)
+        for image_position, img_url in enumerate(
+            imported_place.get("imgs", []), start=1
+        ):
+            load_image(place, img_url, image_position)
 
         self.stdout.write(self.style.SUCCESS("Локация успешно загружена"))
